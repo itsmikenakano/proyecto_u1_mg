@@ -1,36 +1,18 @@
 package com.uce.edu.demo;
 
-import java.time.LocalDateTime;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.consultorio.CitaMedica;
-import com.uce.edu.demo.consultorio.CitaMedica2;
-import com.uce.edu.demo.hotel.Reservacion;
-import com.uce.edu.demo.hotel.Reservacion2;
-import com.uce.edu.demo.hotel.Reservacion3;
+import com.uce.edu.demo.modelo.Estudiante;
+import com.uce.edu.demo.service.IEstudianteService;
 
 @SpringBootApplication
 public class ProyectoU1MgApplication implements CommandLineRunner {
-
-	// 1) DI por atributo
-	//@Autowired
-	//private CitaMedica cita;
 	
 	@Autowired
-	private Reservacion reservacion;
-	
-	@Autowired
-	private Reservacion2 reservacion2;
-	
-	@Autowired
-	private Reservacion3 reservacion3;
-	
-	@Autowired
-	private CitaMedica2 cita;
+	private IEstudianteService estudianteService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU1MgApplication.class, args);
@@ -38,21 +20,26 @@ public class ProyectoU1MgApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-		System.out.println("Mi primer proyecto con Spring Framework");
-
-		String respuesta = cita.agendar(LocalDateTime.now(), "Javier", "Teran", 32, "Quito", "Pepito", 19);
-		System.out.println(respuesta);
 		
-		//******************************************
+		Estudiante e = new Estudiante();
+		e.setNombre("Edison");
+		e.setApellido("Cayambe");
+		e.setCedula("1223344567");
+		this.estudianteService.ingresarEstudiante(e);
 		
-		reservacion.reservar(LocalDateTime.now(), "Hotel Dann Carlton", 35,"Quito", "Michael", "Garcia", "2300290992");
+		Estudiante e1 = new Estudiante();
+		e1.setNombre("Pepito");
+		e1.setApellido("Perez");
+		e1.setCedula("0932838323");
+		this.estudianteService.ingresarEstudiante(e1);
 		
-		reservacion2.reservar(LocalDateTime.now(), "Hotel Dann Carlton", 35,"Quito", "Will", "Solorzano", "1714274825");
+		//Usar los 3 metodos restantes
+		e.setCedula("1732535353");
+		this.estudianteService.actualizarEstudiante(e);
 		
-		reservacion3.reservar(LocalDateTime.now(), "Hotel Dann Carlton", 35,"Quito", "Will", "Solorzano", "1714274825");
+		this.estudianteService.buscarPorApellido("Cayambe");
 		
-		
+		this.estudianteService.eliminarEstudiante("0932838323");
 	}
 
 }
