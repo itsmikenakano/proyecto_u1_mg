@@ -17,7 +17,9 @@ public class MateriaRepositoryImpl implements IMateriaRepository {
 	public Materia buscar(String nombre) {
 		// TODO Auto-generated method stub
 		System.out.println("Se ha buscado en la base la materia: " + nombre);
-		return null;
+		Materia m = new Materia();
+		m.setNombre(nombre);
+		return m;
 	}
 
 	@Override
@@ -29,7 +31,7 @@ public class MateriaRepositoryImpl implements IMateriaRepository {
 	@Override
 	public void eliminar(String nombre) {
 		// TODO Auto-generated method stub
-		System.out.println("Se ha eliminadi en la base la materia: " + nombre);
+		System.out.println("Se ha eliminado en la base la materia: " + nombre);
 	}
 
 }
