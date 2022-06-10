@@ -7,16 +7,17 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.banco.service.IDepositoService;
-import com.uce.edu.demo.banco.service.ITransferenciaService;
+import com.uce.edu.demo.banco.service.IRetiroService;
 
 @SpringBootApplication
 public class ProyectoU1MgApplication implements CommandLineRunner {
 
+//	@Autowired
+//	private ITransferenciaService iTransferenciaService;
+//	@Autowired
+//	private IDepositoService depositoService;
 	@Autowired
-	private ITransferenciaService iTransferenciaService;
-	@Autowired
-	private IDepositoService depositoService;
+	private IRetiroService retiroService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU1MgApplication.class, args);
@@ -25,9 +26,8 @@ public class ProyectoU1MgApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		this.iTransferenciaService.realizarTransferencia("12", "13", new BigDecimal(20));
+		this.retiroService.realizarRetiro("14", new BigDecimal(30));
 
-		this.depositoService.realizarDeposito("14", new BigDecimal(50));
 	}
 
 }

@@ -35,4 +35,22 @@ public class DepositoServiceImpl implements IDepositoService {
 
 	}
 
+	@Override
+	public Deposito buscarPorNumeroCuenta(String numeroCuenta) {
+		// TODO Auto-generated method stub
+		return this.depositoRepository.buscar(numeroCuenta);
+	}
+
+	@Override
+	public void actualizarDeposito(Deposito d) {
+		// TODO Auto-generated method stub
+		this.depositoRepository.actualizar(d);
+	}
+
+	@Override
+	public void eliminarDeposito(String numeroCuenta) {
+		// TODO Auto-generated method stub
+		this.depositoRepository.eliminar(numeroCuenta);
+	}
+
 }
