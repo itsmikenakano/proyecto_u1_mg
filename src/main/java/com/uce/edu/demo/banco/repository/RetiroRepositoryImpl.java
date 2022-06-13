@@ -52,7 +52,7 @@ public class RetiroRepositoryImpl implements IRetiroRepository {
 
 		listaRetiros.add(reti1);
 
-¿		return listaRetiros;
+		return listaRetiros;
 	}
 
 }
