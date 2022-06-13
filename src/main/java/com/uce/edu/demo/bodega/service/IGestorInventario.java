@@ -1,4 +1,4 @@
-package com.uce.edu.demo.bodega.modelo.service;
+package com.uce.edu.demo.bodega.service;
 
 import java.time.LocalDateTime;
 import java.util.List;

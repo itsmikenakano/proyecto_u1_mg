@@ -1,4 +1,4 @@
-package com.uce.edu.demo.bodega.modelo.service;
+package com.uce.edu.demo.bodega.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

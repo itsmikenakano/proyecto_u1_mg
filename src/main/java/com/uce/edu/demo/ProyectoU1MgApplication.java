@@ -11,8 +11,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.uce.edu.demo.bodega.modelo.Producto;
-import com.uce.edu.demo.bodega.modelo.service.IGestorInventario;
-import com.uce.edu.demo.bodega.modelo.service.IProductoService;
+import com.uce.edu.demo.bodega.service.IGestorInventario;
+import com.uce.edu.demo.bodega.service.IProductoService;
 
 @SpringBootApplication
 public class ProyectoU1MgApplication implements CommandLineRunner {
