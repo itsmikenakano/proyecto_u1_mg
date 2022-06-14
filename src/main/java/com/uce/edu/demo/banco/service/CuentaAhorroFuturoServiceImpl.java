@@ -2,46 +2,44 @@ package com.uce.edu.demo.banco.service;
 
 import java.math.BigDecimal;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.uce.edu.demo.banco.modelo.CuentaBancaria;
-import com.uce.edu.demo.banco.repository.ICuentaBancariaRepository;
-
 @Service
-public class CuentaBancariaServiceImpl implements ICuentaBancariaService {
-
-	@Autowired
-	private ICuentaBancariaRepository bancariaRepository;
+@Qualifier("ahorrofuturo")
+public class CuentaAhorroFuturoServiceImpl implements ICuentaBancariaService{
 
 	@Override
 	public void actualizar(CuentaBancaria c) {
 		// TODO Auto-generated method stub
-		this.bancariaRepository.actualizar(c);
+		
 	}
 
 	@Override
 	public CuentaBancaria buscar(String numero) {
 		// TODO Auto-generated method stub
-		return this.bancariaRepository.buscar(numero);
+		return null;
 	}
 
 	@Override
 	public void insertarCuenta(CuentaBancaria c) {
 		// TODO Auto-generated method stub
-		this.bancariaRepository.insertar(c);
+		
 	}
 
 	@Override
 	public void eliminarCuenta(String numero) {
 		// TODO Auto-generated method stub
-		this.bancariaRepository.eliminar(numero);
+		
 	}
 
 	@Override
 	public BigDecimal calcularInteres(String numeroCta, BigDecimal saldo) {
 		// TODO Auto-generated method stub
-		return null;
+		BigDecimal interes = saldo.multiply(new BigDecimal(8)).divide(new BigDecimal(100));
+		interes = interes.add(new BigDecimal(12));
+		return interes;
 	}
-
+	
 }
