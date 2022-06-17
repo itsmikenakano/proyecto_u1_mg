@@ -1,36 +1,26 @@
 package com.uce.edu.demo;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.modelo.Estudiante;
-import com.uce.edu.demo.modelo.Materia;
-import com.uce.edu.demo.modelo.Matricula;
-import com.uce.edu.demo.modelo.ProfesorGeneral;
-import com.uce.edu.demo.modelo.ProfesorMateria;
-import com.uce.edu.demo.service.IMatriculaService;
+import com.uce.edu.demo.centromedico.modelo.CitaMedica;
+import com.uce.edu.demo.centromedico.modelo.MedicoEspecialista;
+import com.uce.edu.demo.centromedico.modelo.MedicoGeneral;
+import com.uce.edu.demo.centromedico.service.ICitaMedicaService;
 
 @SpringBootApplication
 public class ProyectoU1MgApplication implements CommandLineRunner {
 
 	@Autowired
-	private ProfesorGeneral general;
-
-	@Autowired
-	private ProfesorGeneral general1;
-
-	@Autowired
-	private ProfesorMateria materia;
-
-	@Autowired
-	private ProfesorMateria materia1;
+	private MedicoGeneral medicoGeneral;
 	
 	@Autowired
-	private IMatriculaService iMatriculaService;
+	private MedicoEspecialista medicoE;
+
+	@Autowired
+	private ICitaMedicaService iCitaMedicaService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU1MgApplication.class, args);
@@ -38,34 +28,32 @@ public class ProyectoU1MgApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("EJEMPLO SINGLETON");
-		this.general.setNombre("Michael");
-		this.general.setApellido("Garcia");
+		System.out.println("SINGLETON en el main:");
+		this.medicoGeneral.setNombre("Michael");
+		this.medicoGeneral.setApellido("Garcia");
+		System.out.println(this.medicoGeneral);
+		
+		System.out.println("PROTOTYPE en el main:");
+		System.out.println(this.medicoE);
+		
+		System.out.println();
 
-		System.out.println(this.general);
-		System.out.println("-------");
-		System.out.println(this.general1);
-		this.general1.setNombre("Pepito");
-		System.out.println("-------");
-		System.out.println(this.general);
+		CitaMedica cita = new CitaMedica();
 
-		System.out.println("-------");
-		System.out.println(this.general1);
+		this.iCitaMedicaService.registrar(cita, "Odontologia");
 		
-		System.out.println("EJEMPLO PROTOTYPE");
-		this.materia.setNombre("Daniel");
-		this.materia.setApellido("Teran");
-		System.out.println(this.materia);
-		System.out.println("-------");
-		System.out.println(this.materia1);
+		this.iCitaMedicaService.registrar(cita, "Pediatria");
 		
-		Matricula matricula1 = new Matricula();
-		matricula1.setEstudiante(new Estudiante());
-		matricula1.setMateria(new ArrayList<Materia>());
-		matricula1.setNumero("13123");
+		this.iCitaMedicaService.registrar(cita, "General");
 		
-		this.iMatriculaService.insertarMatricula(matricula1);
+		System.out.println();
 		
+		System.out.println("SINGLETON de nuevo en el main:");
+		System.out.println(this.medicoGeneral);
+		
+		System.out.println("PROTOTYPE de nuevo en el main:");
+		System.out.println(this.medicoE);
+
 	}
 
 }
